@@ -34,7 +34,9 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
   return (
     <Container
       type={message.type}
-      hasDescription={!!message.description}
+      // Because a boolean value can not be pass to DOM, true or false was
+      // convert to 0 or 1 below
+      hasDescription={Number(!!message.description)}
       style={style}
     >
       {icons[message.type || 'info']}
