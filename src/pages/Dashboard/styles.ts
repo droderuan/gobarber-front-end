@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+<<<<<<< HEAD
+=======
+import { shade } from 'polished';
+>>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
 
 export const Container = styled.div``;
 
@@ -54,11 +58,26 @@ export const Profile = styled.div`
   }
 
   span {
+<<<<<<< HEAD
     color: #f4ede8;
   }
 
   strong {
     color: #ff9000;
+=======
+    font-size: 18px;
+    color: #f4ede8;
+  }
+
+  a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #ff9000;
+
+    &:hover {
+      color: ${shade(0.2, '#ff9000')};
+    }
+>>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
   }
 `;
 
@@ -88,7 +107,11 @@ export const Schedule = styled.div`
 
     span + span::before {
       content: '';
+<<<<<<< HEAD
       width: 1px;
+=======
+      border: 0.2px solid #ff9000;
+>>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
       height: 16px;
       margin: 0 8px;
       background: #ff9000;
@@ -153,6 +176,7 @@ export const Section = styled.section`
   margin-top: 48px;
 
   > strong {
+<<<<<<< HEAD
     color: #999691;
     font-size: 20px;
     line-height: 26px;
@@ -160,6 +184,20 @@ export const Section = styled.section`
     display: block;
     padding-bottom: 16px;
     margin-bottom: 16px;
+=======
+    display: block;
+    margin: 16px 0;
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #3e3b57;
+    color: #999691;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  > p {
+    color: #999591;
+>>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
   }
 `;
 
@@ -172,10 +210,18 @@ export const Appointment = styled.div`
   }
 
   span {
+<<<<<<< HEAD
     margin-left: auto;
     display: flex;
     align-items: center;
     color: #999591;
+=======
+    width: 80px;
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    color: #f4ede8;
+>>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
 
     svg {
       color: #ff9000;
@@ -208,4 +254,58 @@ export const Appointment = styled.div`
 
 export const Calendar = styled.aside`
   width: 380px;
+<<<<<<< HEAD
+=======
+
+  .DayPicker {
+    background: #28262e;
+    border-radius: 10px;
+  }
+
+  .DayPicker-wrapper {
+    padding-bottom: 0;
+  }
+
+  .DayPicker,
+  .DayPicker-Month {
+    width: 100%;
+  }
+
+  .DayPicker-Month {
+    border-collapse: separate;
+    border-spacing: 8px;
+    margin: 16px;
+  }
+
+  .DayPicker-Day {
+    width: 40px;
+    height: 40px;
+  }
+
+  .DayPicker-Day--available:not(.DayPicker-Day--outside) {
+    background: #3e3b47;
+    border-radius: 10px;
+    color: #fff;
+  }
+
+  .DayPicker:not(.DayPicker--interactionDisabled)
+    .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+    background: ${shade(0.2, '#3e3b47')};
+  }
+
+  .DayPicker-Day--today {
+    font-weight: normal;
+  }
+
+  .DayPicker-Day--disabled {
+    color: #666360 !important;
+    background: transparent !important;
+  }
+
+  .DayPicker-Day--selected {
+    background: #ff9000 !important;
+    border-radius: 10px;
+    color: #232129 !important;
+  }
+>>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
 `;
