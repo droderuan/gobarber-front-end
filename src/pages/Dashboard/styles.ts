@@ -55,11 +55,18 @@ export const Profile = styled.div`
   }
 
   span {
+    font-size: 18px;
     color: #f4ede8;
   }
 
-  strong {
+  a {
+    font-size: 18px;
+    text-decoration: none;
     color: #ff9000;
+
+    &:hover {
+      color: ${shade(0.2, '#ff9000')};
+    }
   }
 `;
 
