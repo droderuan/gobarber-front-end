@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import React, { useState, useCallback } from 'react';
-=======
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
@@ -25,15 +21,6 @@ import {
 
 import LogoImg from '../../assets/logo.svg';
 import { useAuth } from '../../hooks/Auth';
-<<<<<<< HEAD
-
-const Dashboard: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const { signOut, user } = useAuth();
-
-  const handleDateChange = useCallback((day: Date, modifiers: DayModifiers) => {
-    if (modifiers.available) {
-=======
 import api from '../../services/api';
 
 interface MonthAvailabilityItem {
@@ -63,13 +50,10 @@ const Dashboard: React.FC = () => {
 
   const handleDateChange = useCallback((day: Date, modifiers: DayModifiers) => {
     if (modifiers.available && !modifiers.disabled) {
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
       setSelectedDate(day);
     }
   }, []);
 
-<<<<<<< HEAD
-=======
   const handleMonthChange = useCallback((month: Date) => {
     setCurrentmonth(month);
   }, []);
@@ -154,7 +138,6 @@ const Dashboard: React.FC = () => {
     });
   }, [appointments]);
 
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
   return (
     <Container>
       <Header>
@@ -164,13 +147,9 @@ const Dashboard: React.FC = () => {
             <img src={user.avatar_url} alt={user.name} />
             <div>
               <span>Bem-vindo,</span>
-<<<<<<< HEAD
-              <strong>{user.name}</strong>
-=======
               <Link to="/profile">
                 <strong>{user.name}</strong>
               </Link>
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
             </div>
           </Profile>
 
@@ -184,71 +163,6 @@ const Dashboard: React.FC = () => {
         <Schedule>
           <h1>Scheduled Times</h1>
           <p>
-<<<<<<< HEAD
-            <span>Hoje</span>
-            <span>Dia 06</span>
-            <span>Segunda-feira</span>
-          </p>
-
-          <NextAppointment>
-            <strong>Next appointment</strong>
-            <div>
-              <img src={user.avatar_url} alt={user.name} />
-              <strong>{user.name}</strong>
-              <span>
-                <FiClock />
-                09:00
-              </span>
-            </div>
-          </NextAppointment>
-          <Section>
-            <strong>Manhã</strong>
-            <Appointment>
-              <span>
-                <FiClock />
-                08:00
-              </span>
-
-              <div>
-                <img src={user.avatar_url} alt={user.name} />
-                <strong>{user.name}</strong>
-              </div>
-            </Appointment>
-            <Appointment>
-              <span>
-                <FiClock />
-                08:00
-              </span>
-
-              <div>
-                <img src={user.avatar_url} alt={user.name} />
-                <strong>{user.name}</strong>
-              </div>
-            </Appointment>
-            <strong>Tarde</strong>
-            <Appointment>
-              <span>
-                <FiClock />
-                08:00
-              </span>
-
-              <div>
-                <img src={user.avatar_url} alt={user.name} />
-                <strong>{user.name}</strong>
-              </div>
-            </Appointment>
-            <Appointment>
-              <span>
-                <FiClock />
-                08:00
-              </span>
-
-              <div>
-                <img src={user.avatar_url} alt={user.name} />
-                <strong>{user.name}</strong>
-              </div>
-            </Appointment>
-=======
             {isToday(selectedDate) && <span>Hoje</span>}
             <span>{selectedDateAstext}</span>
             <span>{selectedWeekDay}</span>
@@ -321,25 +235,17 @@ const Dashboard: React.FC = () => {
                 </Appointment>
               );
             })}
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
           </Section>
         </Schedule>
         <Calendar>
           <DayPicker
-<<<<<<< HEAD
-            disabledDays={[{ daysOfWeek: [0, 6] }]}
-=======
             disabledDays={[{ daysOfWeek: [0, 6] }, ...disabledDays]}
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
             modifiers={{
               available: { daysOfWeek: [1, 2, 3, 4, 5] },
             }}
             selectedDays={selectedDate}
             onDayClick={handleDateChange}
-<<<<<<< HEAD
-=======
             onMonthChange={handleMonthChange}
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
             fromMonth={new Date()}
             weekdaysShort={['S', 'M', 'T', 'W', 'T', 'F', 'S']}
             months={[
