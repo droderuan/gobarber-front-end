@@ -49,7 +49,7 @@ const Profile: React.FC = () => {
           password_confirmation: Yup.string()
             .when('old_password', {
               is: val => !!val.length,
-              then: Yup.string().required(),
+              then: Yup.string().required('This field is required'),
               otherwise: Yup.string(),
             })
             .oneOf(
@@ -62,14 +62,14 @@ const Profile: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        const response = await api.put('/profile', data);
 
         history.push('/signin');
 
         addToast({
           type: 'sucess',
-          title: `Welcome ${data.name}`,
-          description: 'You can already login',
+          title: `Profile updated`,
+          description: 'Yur profile was updated with sucess',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -82,8 +82,8 @@ const Profile: React.FC = () => {
 
         addToast({
           type: 'error',
-          title: 'Error on the creation of account',
-          description: 'Fail to create account, try again',
+          title: 'Error on update',
+          description: 'Fail to update your profile, try again',
         });
       }
     },
