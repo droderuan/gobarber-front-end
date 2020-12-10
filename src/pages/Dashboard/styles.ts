@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-<<<<<<< HEAD
-=======
 import { shade } from 'polished';
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
 
 export const Container = styled.div``;
 
@@ -58,13 +55,6 @@ export const Profile = styled.div`
   }
 
   span {
-<<<<<<< HEAD
-    color: #f4ede8;
-  }
-
-  strong {
-    color: #ff9000;
-=======
     font-size: 18px;
     color: #f4ede8;
   }
@@ -77,7 +67,6 @@ export const Profile = styled.div`
     &:hover {
       color: ${shade(0.2, '#ff9000')};
     }
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
   }
 `;
 
@@ -107,11 +96,7 @@ export const Schedule = styled.div`
 
     span + span::before {
       content: '';
-<<<<<<< HEAD
-      width: 1px;
-=======
       border: 0.2px solid #ff9000;
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
       height: 16px;
       margin: 0 8px;
       background: #ff9000;
@@ -176,15 +161,6 @@ export const Section = styled.section`
   margin-top: 48px;
 
   > strong {
-<<<<<<< HEAD
-    color: #999691;
-    font-size: 20px;
-    line-height: 26px;
-    border-bottom: 1px solid #3e3b57;
-    display: block;
-    padding-bottom: 16px;
-    margin-bottom: 16px;
-=======
     display: block;
     margin: 16px 0;
     padding-bottom: 16px;
@@ -197,7 +173,6 @@ export const Section = styled.section`
 
   > p {
     color: #999591;
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
   }
 `;
 
@@ -210,18 +185,11 @@ export const Appointment = styled.div`
   }
 
   span {
-<<<<<<< HEAD
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    color: #999591;
-=======
     width: 80px;
     display: flex;
     margin-left: auto;
     align-items: center;
     color: #f4ede8;
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
 
     svg {
       color: #ff9000;
@@ -254,8 +222,6 @@ export const Appointment = styled.div`
 
 export const Calendar = styled.aside`
   width: 380px;
-<<<<<<< HEAD
-=======
 
   .DayPicker {
     background: #28262e;
@@ -307,5 +273,4 @@ export const Calendar = styled.aside`
     border-radius: 10px;
     color: #232129 !important;
   }
->>>>>>> 6a7f2e6be7e516f08d181c940e7f4aedafadfa18
 `;

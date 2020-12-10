@@ -36,6 +36,7 @@ export const Content = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
+
     h1 {
       margin-bottom: 24px;
       font-size: 20px;
@@ -53,9 +54,10 @@ export const AvatarInput = styled.div`
     width: 186px;
     height: 186px;
     border-radius: 50%;
+    background-color: #363046;
   }
 
-  button {
+  label {
     position: absolute;
     width: 48px;
     height: 48px;
@@ -64,6 +66,7 @@ export const AvatarInput = styled.div`
     border: none;
     right: 0;
     bottom: 0;
+    cursor: pointer;
 
     transition: background-color 0.2s ease-in;
 
@@ -79,6 +82,10 @@ export const AvatarInput = styled.div`
       width: 20px;
       height: 20px;
       color: #312e38;
+    }
+
+    input {
+      display: none;
     }
   }
 `;

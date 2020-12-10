@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, ChangeEvent } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { FiUser, FiMail, FiLock, FiCamera, FiArrowLeft } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
@@ -21,14 +21,14 @@ interface ProfileFormData {
   email: string;
   password: string;
   old_password: string;
-  password_conformation: string;
+  password_confirmation: string;
 }
 
 const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: ProfileFormData) => {
@@ -43,7 +43,7 @@ const Profile: React.FC = () => {
           old_password: Yup.string(),
           password: Yup.string().when('old_password', {
             is: val => !!val.length,
-            then: Yup.string().required(),
+            then: Yup.string().required().min(6),
             otherwise: Yup.string(),
           }),
           password_confirmation: Yup.string()
@@ -62,18 +62,42 @@ const Profile: React.FC = () => {
           abortEarly: false,
         });
 
-        const response = await api.put('/profile', data);
+        const {
+          name,
+          email,
+          old_password,
+          password,
+          password_confirmation,
+        } = data;
+
+        const formData = {
+          name,
+          email,
+          ...(old_password
+            ? { old_password, password, password_confirmation }
+            : {}),
+        };
+
+        const response = await api.put('/profile', formData);
+
+        updateUser(response.data);
 
         history.push('/signin');
 
         addToast({
           type: 'sucess',
           title: `Profile updated`,
-          description: 'Yur profile was updated with sucess',
+          description: 'Your profile was updated with sucess',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
+          addToast({
+            type: 'error',
+            title: `Error.`,
+            description:
+              'A error ocurr while trying to update your profile. Please try again.',
+          });
 
           formRef.current?.setErrors(errors);
 
@@ -87,7 +111,37 @@ const Profile: React.FC = () => {
         });
       }
     },
-    [addToast, history],
+    [addToast, history, updateUser],
+  );
+
+  const handleAvatarChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) {
+        const data = new FormData();
+        data.append('avatar', e.target.files[0]);
+
+        api
+          .patch('/users/avatar', data)
+          .then(response => {
+            updateUser(response.data);
+
+            addToast({
+              type: 'sucess',
+              title: 'Avatar atualizado',
+              description: 'O avatar foi atualizado com sucesso',
+            });
+          })
+          .catch(() =>
+            addToast({
+              type: 'error',
+              title: 'Error',
+              description:
+                'Ocorreu um error ao tentar atualizar o avatar. Tente novamente.',
+            }),
+          );
+      }
+    },
+    [addToast, updateUser],
   );
 
   return (
@@ -110,9 +164,11 @@ const Profile: React.FC = () => {
         >
           <AvatarInput>
             <img src={user.avatar_url} alt={user.name} />
-            <button type="button">
+
+            <label htmlFor="avatar">
               <FiCamera />
-            </button>
+              <input type="file" id="avatar" onChange={handleAvatarChange} />
+            </label>
           </AvatarInput>
 
           <h1>My profile</h1>
@@ -135,7 +191,7 @@ const Profile: React.FC = () => {
           />
 
           <Input
-            name="confirm_password"
+            name="password_confirmation"
             placeholder="Confirm the new password"
             type="password"
             icon={FiLock}
